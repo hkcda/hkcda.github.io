@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Constitution | HKCDA</title>
+    <meta name="description" content="The Constitution of the Hong Kong Cloud Developers Association (HKCDA).">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,300;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Newsreader', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            sky: '#38BDF8', // Cloud Blue
+                            dark: '#050505',
+                            panel: '#0F110E',
+                            accent: '#2563EB'
+                        }
+                    },
+                    typography: (theme) => ({
+                        DEFAULT: {
+                            css: {
+                                color: 'rgba(255, 255, 255, 0.7)',
+                                h1: { color: '#fff', fontFamily: 'Newsreader, serif' },
+                                h2: { color: '#fff', fontFamily: 'Newsreader, serif' },
+                                h3: { color: '#fff', fontFamily: 'Newsreader, serif' },
+                                h4: { color: theme('colors.brand.sky'), fontFamily: 'Inter, sans-serif', textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.9em' },
+                                strong: { color: '#fff' },
+                                ol: { listStyleType: 'decimal' },
+                                'ol > li::marker': { color: theme('colors.brand.sky') },
+                                'ul > li::marker': { color: theme('colors.brand.sky') },
+                            },
+                        },
+                    }),
+                }
+            },
+            plugins: [
+                function({ addUtilities }) {
+                    addUtilities({
+                        '.list-alpha': { listStyleType: 'lower-alpha' },
+                        '.list-roman': { listStyleType: 'lower-roman' },
+                    })
+                }
+            ]
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030303;
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Typography Override for Legal Text structure */
+        .legal-content h3 {
+            font-size: 1.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 0.5rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .legal-content h4 {
+            font-size: 1rem;
+            color: #38BDF8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .legal-content ol {
+            padding-left: 1.25rem;
+            margin-bottom: 1rem;
+            list-style-type: decimal;
+        }
+        
+        .legal-content ol li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Nested Lists */
+        .legal-content ol ol {
+            list-style-type: lower-alpha;
+            padding-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .legal-content ol ol ol {
+            list-style-type: lower-roman;
+        }
+
+        /* Sidebar Links */
+        .sidebar-link {
+            display: block;
+            padding: 0.5rem 0;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.85rem;
+            transition: color 0.2s;
+            border-left: 1px solid transparent;
+            padding-left: 1rem;
+            margin-left: -1px;
+        }
+        
+        .sidebar-link:hover, .sidebar-link.active {
+            color: #38BDF8;
+            border-left-color: #38BDF8;
+        }
+
+        /* Smooth scrolling padding for fixed header */
+        html { scroll-padding-top: 120px; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col relative selection:bg-brand-sky selection:text-black">
+
+    <!-- 1. Unicorn Studio Background (Subtle) -->
+    <div class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-20 mix-blend-screen">
+        <div data-us-project="2Vn6Fs00nznm2BK3SWDp" style="width:100%; height: 100%"></div>
+        <script type="text/javascript">
+            !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.2/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+        </script>
+    </div>
+
+    <!-- 2. Navigation -->
+    <nav class="fixed left-1/2 -translate-x-1/2 top-6 w-[90%] max-w-5xl z-50">
+        <div class="flex items-center justify-between p-2 pl-6 pr-2 rounded-full border border-white/10 bg-black/50 backdrop-blur-xl shadow-lg shadow-brand-sky/5">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-brand-sky/20 to-transparent flex items-center justify-center border border-brand-sky/30 group-hover:border-brand-sky/60 transition-colors">
+                    <span class="iconify text-brand-sky" data-icon="solar:cloud-bold-duotone" data-width="20"></span>
+                </div>
+                <span class="font-serif font-bold italic text-lg tracking-tight group-hover:text-white transition-colors">HKCDA</span>
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="about.html" class="text-sm font-medium text-white/60 hover:text-white transition-colors">About</a>
+                <a href="events.html" class="text-sm font-medium text-white/60 hover:text-white transition-colors">Events</a>
+                <a href="membership.html" class="text-sm font-medium text-white/60 hover:text-white transition-colors">Membership</a>
+                <a href="constitution.html" class="text-sm font-medium text-white transition-colors">Constitution</a>
+            </div>
+
+            <!-- CTA -->
+            <a href="https://forms.gle/5dKWwubvhCZtJd7Z6" class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black text-xs font-bold hover:bg-brand-sky transition-colors">
+                Register
+                <span class="iconify" data-icon="solar:arrow-right-bold" data-width="14"></span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content Grid -->
+    <main class="flex-grow pt-32 pb-20 px-6 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="hidden lg:block lg:col-span-3 sticky top-32 h-[calc(100vh-160px)] overflow-y-auto pr-4 scrollbar-hide">
+            <h2 class="text-white font-serif text-xl mb-6 px-4">Contents</h2>
+            <nav class="border-l border-white/10">
+                <a href="#general" class="sidebar-link">Ch 1: General Principles</a>
+                <a href="#membership" class="sidebar-link">Ch 2: Membership</a>
+                <a href="#general-meeting" class="sidebar-link">Ch 3: General Meeting</a>
+                <a href="#executive" class="sidebar-link">Ch 4: Executive Committee</a>
+                <a href="#sigs" class="sidebar-link">Ch 5: Special Interest Groups</a>
+                <a href="#finance" class="sidebar-link">Ch 6: Financial Matters</a>
+                <a href="#code" class="sidebar-link">Ch 7: Code of Conduct</a>
+                <a href="#amendments" class="sidebar-link">Ch 8: Amendments</a>
+                <a href="#dissolution" class="sidebar-link">Ch 9: Dissolution</a>
+                <a href="#provisions" class="sidebar-link">Ch 10: General Provisions</a>
+            </nav>
+            <div class="mt-8 px-4">
+                <p class="text-[10px] text-white/30 uppercase tracking-widest font-mono mb-2">Last Update</p>
+                <p class="text-sm text-white/60">18th June, 2025</p>
+            </div>
+        </aside>
+
+        <!-- Main Text -->
+        <article class="col-span-1 lg:col-span-9 legal-content pb-20 max-w-4xl">
+            <h1 class="text-4xl md:text-5xl font-serif text-white mb-4">Constitution of the Hong Kong Cloud Developers Association (HKCDA)</h1>
+            <p class="text-white/40 mb-12 font-mono text-sm">Version 1.2</p>
+
+            <!-- Chapter 1 -->
+            <section id="general">
+                <h3 class="text-white font-serif text-2xl border-b border-white/10 pb-4 mt-12 mb-6">Chapter 1: General Principles</h3>
+                
+                <h4>Article 1: Name</h4>
+                <ol>
+                    <li>The name of this organization shall be the <strong>Hong Kong Cloud Developers Association</strong>, hereinafter referred to as "the Association".</li>
+                    <li>The short form of the name shall be <strong>HKCDA</strong>.</li>
+                    <li>The Chinese name of the Association shall be 香港雲端開發者協會.</li>
+                    <li>The short Chinese form of the name shall be 香港雲協.</li>
+                </ol>
+
+                <h4>Article 2: Affiliation</h4>
+                <ol>
+                    <li>The Association is an independent, non-profit organization.</li>
+                    <li>The Association will seek to collaborate with various cloud computing providers, technology companies, and relevant organizations to achieve its objectives.</li>
+                </ol>
+
+                <h4>Article 3: Objectives</h4>
+                <p class="text-white/70 mb-4">The objectives of the Association are:</p>
+                <ol>
+                    <li><strong>To promote the advancement and adoption of cloud computing technologies in Hong Kong.</strong></li>
+                    <li><strong>To foster a vibrant community of cloud computing developers in Hong Kong</strong>, including individuals and companies utilizing and contributing to cloud computing technologies.</li>
+                    <li><strong>To facilitate collaboration and knowledge sharing</strong> among cloud computing developers, cloud computing technology providers, and the broader technology ecosystem in Hong Kong.</li>
+                    <li><strong>To facilitate the formation and operation of Special Interest Groups (SIGs)</strong> focused on specific areas of cloud computing technology, to foster deeper engagement and specialized knowledge sharing among members.</li>
+                    <li><strong>To provide a platform for education, training, and professional development</strong>, free or charged, in cloud computing and related technologies for its members.</li>
+                    <li><strong>To represent the interests of Hong Kong cloud computing developers</strong> and advocate for policies that support the growth of the cloud computing industry in Hong Kong.</li>
+                    <li><strong>To organize events, workshops, seminars, and conferences</strong> related to cloud computing technologies to enhance learning and networking opportunities.</li>
+                    <li><strong>To establish Hong Kong as a leading hub for cloud computing technology innovation and expertise</strong> in the Asia-Pacific region.</li>
+                    <li><strong>To act as a bridge between cloud computing technology providers and cloud computing technology users</strong> in Hong Kong, fostering mutual understanding and collaboration.</li>
+                </ol>
+            </section>
+
+            <!-- Chapter 2 -->
+            <section id="membership">
+                <h3>Chapter 2: Membership</h3>
+
+                <h4>Article 4: Membership Categories</h4>
+                <p class="text-white/70 mb-4">The Association shall have the following categories of membership:</p>
+                <ol>
+                    <li><strong>Individual Members:</strong> Open to individuals residing in or connected to Hong Kong (working for a Hong Kong based company remotely, or having a past residency in Hong Kong), who are actively involved in cloud computing development, including but not limited to cloud computing engineers, software developers, architects, DevOps engineers, and students in related fields.</li>
+                    <li><strong>Corporate Members:</strong> Open to companies and organizations based in or operating in Hong Kong that are cloud computing technology providers, cloud computing service users, or have a significant interest in cloud computing technologies. This includes cloud computing platform providers, software companies, consulting firms, and end-user organizations.</li>
+                    <li><strong>Student Members:</strong> Open to individuals who are currently enrolled as bona fide students in a recognized educational institution in Hong Kong, pursuing studies in computer science, information technology, software engineering, or a closely related field relevant to cloud computing technologies.</li>
+                    <li><strong>Honorary Members:</strong> Individuals who have made significant contributions to the cloud computing technology community in Hong Kong or to the Association, as nominated by the Executive Committee and approved by the General Meeting.</li>
+                </ol>
+
+                <h4>Article 5: Membership Qualifications</h4>
+                <ol>
+                    <li><strong>Individual Members:</strong> Must demonstrate an active interest or involvement in cloud computing technology development and agree to abide by this Constitution.</li>
+                    <li><strong>Corporate Members:</strong> Must be a legally registered entity in Hong Kong or have a significant operational presence in Hong Kong, and agree to abide by this Constitution.</li>
+                    <li><strong>Student Members:</strong> Must provide proof of current student enrollment (e.g., student ID, enrollment letter) in a recognized educational institution in Hong Kong, pursuing studies in computer science, information technology, software engineering, or a closely related field relevant to cloud computing technologies, and agree to abide by this Constitution. The Executive Committee shall determine what constitutes a "recognized educational institution" and "closely related field".</li>
+                    <li><strong>Honorary Members:</strong> Nominated and approved as per Article 4.4.</li>
+                </ol>
+
+                <h4>Article 6: Membership Rights</h4>
+                <p class="text-white/70 mb-4">All members in good standing shall have the following rights, subject to their membership category:</p>
+                <ol>
+                    <li><strong>Individual and Corporate Members:</strong>
+                        <ol>
+                            <li>To attend and participate in General Meetings.</li>
+                            <li>To vote at General Meetings. Corporate Members shall have rights as detailed in Article 9.</li>
+                            <li>To nominate and be nominated for positions in the Executive Committee (Individual Members only).</li>
+                            <li>To participate in all activities and events organized by the Association.</li>
+                            <li>To access member resources and benefits as defined by the Executive Committee.</li>
+                            <li>To contribute to the Association's initiatives and committees.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Student Members:</strong>
+                        <ol>
+                            <li>To attend and participate in General Meetings.</li>
+                            <li>To vote at General Meetings (Student Members shall have one vote each).</li>
+                            <li>To nominate and be nominated for positions in the Executive Committee.</li>
+                            <li>To participate in all activities and events organized by the Association.</li>
+                            <li>To access member resources and benefits as defined by the Executive Committee.</li>
+                            <li>To contribute to the Association's initiatives and committees.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Honorary Members:</strong>
+                        <ol>
+                            <li>To attend and participate in General Meetings and events.</li>
+                            <li>To receive recognition for their contributions.</li>
+                            <li>To be consulted for advice and guidance by the Executive Committee.</li>
+                            <li>Honorary Members shall not have voting rights or the right to hold office.</li>
+                        </ol>
+                    </li>
+                </ol>
+
+                <h4>Article 7: Membership Obligations</h4>
+                <p class="text-white/70 mb-4">All members shall have the following obligations:</p>
+                <ol>
+                    <li>To uphold and abide by this Constitution.</li>
+                    <li>To pay membership fees as specified in Article 8 (except Honorary Members). Student Members shall pay a reduced membership fee.</li>
+                    <li>To conduct themselves in a manner that promotes the objectives and reputation of the Association, and in accordance with the Code of Conduct (Chapter 7).</li>
+                    <li>To contribute to the community and support the activities of the Association where possible.</li>
+                </ol>
+
+                <h4>Article 8: Membership Fees</h4>
+                <ol>
+                    <li>Membership fees shall be payable by Individual, Corporate, and Student Members. Honorary Members are exempt from membership fees.</li>
+                    <li><strong>Specific Membership Fees:</strong>
+                        <ol>
+                            <li><strong>Individual Membership Fee:</strong> The annual membership fee for Individual Members shall be HKD 10 (ten) per year.</li>
+                            <li><strong>Corporate Membership Fee:</strong> The annual membership fee for Corporate Members shall be HKD 100 (one hundred) per year.</li>
+                            <li><strong>Student Membership Fee:</strong> The annual membership fee for Student Members shall be HKD 0 (zero, free) per year.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Payment Methods:</strong> Membership fees shall be payable via online bank transfer, credit card, cash, or cheque made payable to "Hong Kong Cloud Developers Association c/o Room 903, 9/F., Song Ling Industrial Building, 40 Ta Chuen Ping Street, Kwai Chung, Hong Kong”.</li>
+                    <li><strong>Payment Due Date:</strong> Membership fees are due annually on the 1st of April or upon application for new members. Renewal payments are due annually by the anniversary of the member's joining date.</li>
+                    <li><strong>Fee Arrears and Suspension:</strong> Members who are in arrears of membership fees for more than 1 month will be considered in default. The Executive Committee shall send a reminder notice. If fees remain unpaid for 2 months after the due date, membership may be suspended.</li>
+                    <li><strong>Reinstatement after Suspension:</strong> Suspended members may be reinstated upon payment of all outstanding fees and a reinstatement fee of HKD 0 (zero).</li>
+                    <li><strong>Fee Waivers (Exceptional Circumstances):</strong> In exceptional circumstances, the Executive Committee may consider requests for fee waivers or reductions on a case-by-case basis.</li>
+                </ol>
+
+                <h4>Article 9: Corporate Membership Voting Rights</h4>
+                <ol>
+                    <li><strong>Corporate Member Votes:</strong> Each Corporate Member in good standing shall be entitled to 1 vote at General Meetings.</li>
+                    <li><strong>Designated Representatives:</strong> Corporate Members shall designate a primary representative and may designate up to 1 alternate representative who is authorized to attend General Meetings and exercise voting rights on behalf of the Corporate Member. The designation must be notified to the Secretary in writing.</li>
+                </ol>
+
+                <h4>Article 10: Application for Membership</h4>
+                <ol>
+                    <li>Applications for Individual, Corporate, and Student Membership shall be submitted to the Executive Committee in the prescribed form.</li>
+                    <li>The Executive Committee shall review applications and approve or reject membership based on the qualifications outlined in Article 5 (Membership Qualifications) and any additional criteria it may establish.</li>
+                    <li>Applicants shall be notified of the decision in writing.</li>
+                    <li>Upon approval, new members shall pay the applicable membership fees to activate their membership.</li>
+                </ol>
+
+                <h4>Article 11: Termination of Membership</h4>
+                <ol>
+                    <li>Membership may be terminated under the following circumstances:
+                        <ol>
+                            <li><strong>Voluntary Resignation:</strong> A member may resign by submitting a written notice to the Executive Committee.</li>
+                            <li><strong>Non-Payment of Fees:</strong> Failure to pay membership fees leading to suspension, as outlined in Article 8.5. If fees remain unpaid for 2 months after the due date, membership may be terminated following the suspension. No appeal to the General Meeting is required for terminations solely due to non-payment of fees.</li>
+                            <li><strong>Violation of Constitution or Misconduct:</strong> Engaging in conduct that is detrimental to the Association, violates this Constitution (including the Code of Conduct in Chapter 7), or breaches ethical standards may lead to membership termination. The following procedure shall be followed:
+                                <ol>
+                                    <li>The Executive Committee shall issue a written notice to the member, detailing the reasons for the proposed termination and providing an opportunity to respond in writing within 7 days.</li>
+                                    <li>The Executive Committee shall consider the member's response (if any) and make a decision by majority vote.</li>
+                                    <li>The member shall be notified in writing of the Executive Committee's decision, including the reasons for termination and the effective date.</li>
+                                    <li>The member shall have the right to appeal the decision to the General Meeting. Notice of appeal must be submitted in writing to the Secretary within 14 days of the termination notice.</li>
+                                    <li>The appeal shall be considered at the next General Meeting, where the members shall vote on whether to uphold or overturn the Executive Committee's decision. The decision of the General Meeting shall be final.</li>
+                                </ol>
+                            </li>
+                            <li><strong>Decision of the Executive Committee:</strong> In exceptional circumstances not covered above, the Executive Committee, with a majority vote and subject to ratification by the General Meeting, may terminate membership for reasons deemed to be in the best interest of the Association, following the procedure outlined in Article 11.1.c.</li>
+                        </ol>
+                    </li>
+                    <li>Members subject to termination (except for non-payment) shall be given written notice and an opportunity to appeal as defined above.</li>
+                </ol>
+            </section>
+
+            <!-- Chapter 3 -->
+            <section id="general-meeting">
+                <h3>Chapter 3: General Meeting</h3>
+
+                <h4>Article 12: Authority of the General Meeting</h4>
+                <ol>
+                    <li>The General Meeting is the supreme governing body of the Association.</li>
+                    <li>It shall have the power to:
+                        <ol>
+                            <li>Elect and remove members of the Executive Committee.</li>
+                            <li>Approve amendments to this Constitution.</li>
+                            <li>Approve annual financial reports and budgets.</li>
+                            <li>Ratify decisions of the Executive Committee where required by this Constitution.</li>
+                            <li>Discuss and decide on matters affecting the Association's objectives, policies, and activities, including appeals on membership termination.</li>
+                            <li>Dissolve the Association.</li>
+                            <li>Approve Honorary Members.</li>
+                        </ol>
+                    </li>
+                </ol>
+
+                <h4>Article 13: Types of General Meetings</h4>
+                <ol>
+                    <li><strong>Annual General Meeting (AGM):</strong> Shall be held once a year, typically within May of each year. The AGM shall:
+                        <ol>
+                            <li>Receive reports from the Executive Committee, including the Chairperson's report, Treasurer's report, and activity reports.</li>
+                            <li>Approve the annual financial statements and budget for the upcoming year.</li>
+                            <li>Elect the new Executive Committee for the following term.</li>
+                            <li>Consider any proposed amendments to this Constitution.</li>
+                            <li>Address any other business properly brought before the meeting.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Extraordinary General Meeting (EGM):</strong> May be convened:
+                        <ol>
+                            <li>By a resolution of the Executive Committee.</li>
+                            <li>Upon written request signed by at least 1% of voting members, stating the purpose of the meeting.</li>
+                            <li>EGMs shall be convened to address urgent or specific matters that require the decision of the General Membership outside of the AGM cycle.</li>
+                        </ol>
+                    </li>
+                </ol>
+
+                <h4>Article 14: Notice and Convening of General Meetings</h4>
+                <ol>
+                    <li><strong>Notice Period:</strong> Notice of Annual General Meetings (AGMs) shall be given at least 14 days in advance. Notice of Extraordinary General Meetings (EGMs) shall be given at least 7 days in advance, unless circumstances require a shorter notice period, which must be justified by the Executive Committee and communicated in the meeting notice.</li>
+                    <li><strong>Methods of Notice:</strong> Notice of General Meetings shall be effectively communicated to members via at least 1 of the following methods:
+                        <ol>
+                            <li>Email to the registered email address of each member.</li>
+                            <li>Posting on the official Association website.</li>
+                            <li>Announcement through official Association social media channels (if applicable).</li>
+                            <li>Postal mail to members who do not have email addresses on record (optional, depending on member demographics).</li>
+                        </ol>
+                    </li>
+                    <li><strong>Content of Notice:</strong> The notice of a General Meeting shall include:
+                        <ol>
+                            <li>The date, time, and venue of the meeting.</li>
+                            <li>The type of meeting (AGM or EGM).</li>
+                            <li>The proposed agenda includes key items for discussion and voting.</li>
+                            <li>Any supporting documents (e.g., annual reports, financial statements, constitutional amendment proposals) shall be made available to members in advance, preferably online.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Quorum:</strong> The quorum for a General Meeting shall be 1% of the total voting membership as of 7 days before the meeting date.</li>
+                    <li><strong>Adjournment for Lack of Quorum:</strong> If a quorum is not present within 60 minutes of the scheduled start time, the meeting shall be adjourned. The adjourned meeting shall be reconvened within 4 weeks, with at least 7 days' notice to members. At the reconvened meeting, the quorum requirement shall be waived for the originally scheduled agenda items.</li>
+                    <li><strong>Chairperson:</strong> The Chairperson of the Executive Committee shall chair General Meetings, or in their absence, the Vice-Chairperson. If both are absent, the members present shall elect a chairperson for that meeting.</li>
+                    <li><strong>Decisions:</strong> Decisions at General Meetings shall be made by a simple majority of votes cast, unless otherwise specified in this Constitution (e.g., for constitutional amendments or dissolution, which require a two-thirds majority).</li>
+                </ol>
+
+                <h4>Article 15: Voting Procedures at General Meetings</h4>
+                <ol>
+                    <li><strong>Voting Eligibility:</strong> Only members in good standing (i.e., membership is active and fees are current) are eligible to vote at General Meetings. Honorary Members do not have voting rights. Individual Members and Student Members have one vote each. Corporate Members have one vote as per Article 9.</li>
+                    <li><strong>Voting Methods:</strong> Voting may be conducted by:
+                        <ol>
+                            <li><strong>Show of Hands:</strong> For routine motions and procedural matters, unless a ballot is requested.</li>
+                            <li><strong>Ballot (Secret Ballot):</strong> Required for elections of Executive Committee members, constitutional amendments, membership terminations under appeal, and any other matter where the Chairperson deems a secret ballot appropriate or if requested by at least five (5) voting members present or as otherwise defined in procedures established by the Executive Committee.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Proxy Voting:</strong> Proxy voting is permitted. Detailed rules for proxy voting, including limitations and valid proxy forms, shall be outlined in a separate procedure document approved by the Executive Committee and made available to members.</li>
+                    <li><strong>Tie-Breaking Vote:</strong> In the event of a tie in voting, the Chairperson of the meeting shall have a casting vote to break the tie.</li>
+                </ol>
+
+                <h4>Article 16: Conduct of General Meetings</h4>
+                <ol>
+                    <li><strong>Meeting Rules of Order:</strong> General Meetings shall be conducted in an orderly and respectful manner, adhering to an adapted version of Robert's Rules of Order as determined by the Executive Committee. The Chairperson shall be responsible for maintaining order and ensuring fair discussion.</li>
+                    <li><strong>Member Participation:</strong> Members shall have reasonable opportunities to speak, ask questions, and contribute to discussions, within the time constraints of the meeting and at the discretion of the Chairperson.</li>
+                    <li><strong>Minutes of Meetings:</strong> The Secretary shall be responsible for recording accurate and comprehensive minutes of all General Meetings. Minutes shall include: date, time, attendance, agenda items, motions proposed and passed or failed, key points of discussion, and resolutions adopted. Draft minutes shall be circulated to the Executive Committee for review and then made available to members within 30 days of the meeting.</li>
+                </ol>
+            </section>
+
+            <!-- Chapter 4 -->
+            <section id="executive">
+                <h3>Chapter 4: Executive Committee</h3>
+
+                <h4>Article 17: Authority and Responsibilities of the Executive Committee</h4>
+                <ol>
+                    <li>The Executive Committee is the executive body responsible for the day-to-day management and operation of the Association, and for implementing the decisions of the General Meeting.</li>
+                    <li>The Executive Committee shall be responsible for:
+                        <ol>
+                            <li>Developing and implementing the Association's strategic plan and annual work plan, aligned with the objectives of the Association.</li>
+                            <li>Managing the Association's finances, including budgeting, fundraising, expenditure, and financial reporting, as detailed in Chapter 6.</li>
+                            <li>Organizing and managing events, programs, and activities of the Association.</li>
+                            <li>Managing membership, including processing applications, maintaining membership records, and addressing membership matters as per Chapter 2.</li>
+                            <li>Representing the Association in external relations, partnerships, and collaborations.</li>
+                            <li>Establishing and overseeing sub-committees or working groups as needed to carry out specific tasks, as detailed in Article 22.</li>
+                            <li>Developing and implementing operational procedures consistent with this Constitution.</li>
+                            <li>Ensuring compliance with all applicable laws and regulations in Hong Kong.</li>
+                            <li>Preparing reports for the General Meeting.</li>
+                            <li>Interpreting this Constitution, subject to Article 36.</li>
+                            <li>Enforcing the Code of Conduct, as per Chapter 7.</li>
+                        </ol>
+                    </li>
+                </ol>
+
+                <h4>Article 18: Composition and Roles of the Executive Committee</h4>
+                <ol>
+                    <li>The Executive Committee shall consist of 4 members, holding the following core positions:
+                        <ol>
+                            <li>Chairperson</li>
+                            <li>Vice-Chairperson</li>
+                            <li>Secretary</li>
+                            <li>Treasurer</li>
+                        </ol>
+                    </li>
+                    <li><strong>Roles and Responsibilities:</strong>
+                        <ol>
+                            <li><strong>Chairperson:</strong>
+                                <ol>
+                                    <li>Presides over all General Meetings and Executive Committee meetings.</li>
+                                    <li>Provides overall leadership and direction to the Association.</li>
+                                    <li>Acts as the primary spokesperson for the Association.</li>
+                                    <li>Represents the Association in external engagements and partnerships.</li>
+                                    <li>Ensures effective functioning of the Executive Committee and implementation of the Association's objectives.</li>
+                                </ol>
+                            </li>
+                            <li><strong>Vice-Chairperson:</strong>
+                                <ol>
+                                    <li>Assists the Chairperson in all duties.</li>
+                                    <li>Deputizes for the Chairperson in their absence.</li>
+                                    <li>May have specific portfolio responsibilities as assigned by the Executive Committee (e.g., Membership, Events).</li>
+                                </ol>
+                            </li>
+                            <li><strong>Secretary:</strong>
+                                <ol>
+                                    <li>Responsible for all official correspondence and communication of the Association.</li>
+                                    <li>Maintains membership records and databases.</li>
+                                    <li>Organizes and distributes notices and agendas for meetings.</li>
+                                    <li>Takes and maintains minutes of General Meetings and Executive Committee meetings.</li>
+                                    <li>Manages the Association's official documents and archives.</li>
+                                </ol>
+                            </li>
+                            <li><strong>Treasurer:</strong>
+                                <ol>
+                                    <li>Manages the Association's finances, including budgeting, accounting, and financial reporting as detailed in Chapter 6.</li>
+                                    <li>Collects membership fees and other income.</li>
+                                    <li>Authorizes and manages expenditures, ensuring proper financial controls.</li>
+                                    <li>Prepares financial statements and reports for the Executive Committee and General Meetings.</li>
+                                    <li>Works with the appointed auditor for annual audits.</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>The Executive Committee should strive for representation from different segments of the cloud computing developer community.</li>
+                </ol>
+
+                <h4>Article 19: Election and Term of Office of the Executive Committee</h4>
+                <ol>
+                    <li><strong>Election:</strong> Members of the Executive Committee shall be elected by voting members at the Annual General Meeting.</li>
+                    <li><strong>Nomination Period:</strong> The Executive Committee shall announce a call for nominations for Executive Committee positions at least 4 weeks prior to the AGM. The nomination period shall be 4 weeks.</li>
+                    <li><strong>Eligibility for Nomination:</strong> Individual Members, Corporate Members, and Student Members in good standing are eligible to be nominated for and hold positions on the Executive Committee.</li>
+                    <li><strong>Nomination Process:</strong> Nominations shall be submitted in writing to the Secretary, using the prescribed nomination form, and must be proposed and seconded by two other Individual or Student Members in good standing, with the nominee's consent.</li>
+                    <li><strong>Candidate Statements:</strong> Nominees may be invited to submit a brief candidate statement outlining their qualifications and vision for the Association, to be circulated to members prior to the AGM.</li>
+                    <li><strong>Election at AGM:</strong> Elections shall be conducted by secret ballot at the AGM. Voting members shall cast their votes for their preferred candidate for each position.</li>
+                    <li><strong>Counting of Votes:</strong> Votes shall be counted by an independent election committee appointed by the Executive Committee, or by designated Executive Committee members not standing for re-election. The candidate receiving the highest number of votes for each position shall be declared elected. In case of a tie, a run-off election between the tied candidates shall be conducted immediately; if a tie persists, the Chairperson of the AGM (if not involved in the tie) shall have a casting vote, or the matter shall be resolved by lot.</li>
+                    <li><strong>Announcement of Results:</strong> The election results shall be announced at the AGM and subsequently communicated to all members.</li>
+                    <li><strong>Term of Office:</strong> The term of office for the Executive Committee shall be 2 years, commencing from the date of the AGM at which they are elected and concluding at the AGM two years later where new elections are held.</li>
+                    <li><strong>Re-election:</strong> Executive Committee members may be eligible for re-election.</li>
+                </ol>
+
+                <h4>Article 20: Executive Committee Meetings</h4>
+                <ol>
+                    <li><strong>Meeting Frequency:</strong> The Executive Committee shall aim to meet at least yearly. Additional meetings may be convened as needed.</li>
+                    <li><strong>Convening Meetings:</strong> Meetings may be convened by the Chairperson or by any 1 Executive Committee member submitting a request to the Chairperson.</li>
+                    <li><strong>Notice of Meetings:</strong> Notice of Executive Committee meetings, including the agenda, shall be provided to Executive Committee members at least 7 days in advance unless urgent circumstances require shorter notice.</li>
+                    <li><strong>Agenda Items:</strong> Any Executive Committee member may propose agenda items for meetings. The Chairperson, in consultation with the Secretary, shall finalize the agenda.</li>
+                    <li><strong>Quorum:</strong> The quorum for any meeting of the Executive Committee shall be constituted by the attendance of:
+                        <ol>
+                            <li>a minimum of two (2) duly appointed members of the Executive Committee; or</li>
+                            <li>a number of members equivalent to one percent (1%) of the total number of then-serving Executive Committee members, rounded up to the nearest whole integer where such calculation results in a fraction;</li>
+                        </ol>
+                        whichever of the foregoing (a) or (b) represents the greater number of members. For the avoidance of doubt, if the calculation under sub-clause (b) results in a number less than two (2), the quorum shall be two (2) members of the Executive Committee.
+                    </li>
+                    <li><strong>Decision-Making:</strong> Decisions shall be made by a simple majority vote of Executive Committee members present at a meeting where a quorum is present. The Chairperson shall have a casting vote in the event of a tie.</li>
+                    <li><strong>Minutes:</strong> Minutes of each Executive Committee meeting shall be recorded by the Secretary and circulated to Executive Committee members for review and approval at the next meeting. Approved minutes shall be maintained as official records.</li>
+                </ol>
+
+                <h4>Article 21: Vacancies in the Executive Committee</h4>
+                <ol>
+                    <li>In the event of a vacancy arising in the Executive Committee due to resignation, removal, or other reasons, the remaining members of the Executive Committee may, by majority vote, appoint an eligible member of the Association to fill the vacancy until the next AGM election.</li>
+                    <li>If the position of Chairperson becomes vacant, the Vice-Chairperson shall automatically assume the role of Chairperson until a replacement is appointed or elected at the next AGM. If the Vice-Chairperson is unable or unwilling, the remaining Executive Committee members shall appoint an Acting Chairperson from among themselves until the next AGM.</li>
+                </ol>
+
+                <h4>Article 22: Sub-Committees and Working Groups</h4>
+                <ol>
+                    <li><strong>Establishment:</strong> The Executive Committee may establish sub-committees or working groups as needed to address specific areas of focus or projects, such as Event Planning, Membership Development, Website Management, etc.</li>
+                    <li><strong>Terms of Reference:</strong> For each sub-committee or working group, the Executive Committee shall define its terms of reference, scope of work, reporting requirements, and duration (if applicable).</li>
+                    <li><strong>Membership:</strong> Sub-committees and working groups shall be chaired by an Executive Committee member and may include other Executive Committee members, Association members, and co-opted experts or volunteers as deemed appropriate by the Executive Committee.</li>
+                    <li><strong>Authority:</strong> Sub-committees and working groups shall operate under the direction and authority of the Executive Committee. They shall make recommendations to the Executive Committee but shall not have independent decision-making authority unless specifically delegated by the Executive Committee for clearly defined and limited tasks.</li>
+                </ol>
+            </section>
+
+            <!-- Chapter 5 -->
+            <section id="sigs">
+                <h3>Chapter 5: Special Interest Groups (SIGs)</h3>
+
+                <h4>Article 23: Purpose and Formation of Special Interest Groups</h4>
+                <ol>
+                    <li><strong>Purpose:</strong> Special Interest Groups (SIGs) are established within the Association to provide focused forums for members to:
+                        <ol>
+                            <li>Explore specific areas of cloud technology in greater depth.</li>
+                            <li>Share knowledge, experiences, and best practices related to particular cloud domains, platforms, or technologies.</li>
+                            <li>Collaborate on projects, initiatives, and learning opportunities within their area of interest.</li>
+                            <li>Network with other members who have similar technical interests.</li>
+                            <li>Contribute to the broader cloud technology community in Hong Kong and beyond.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Proposal for SIG Formation:</strong> Any group of at least five (5) Individual Members in good standing may propose the formation of a new SIG by submitting a written proposal to the Executive Committee.</li>
+                    <li><strong>Proposal Content:</strong> The SIG proposal shall include:
+                        <ol>
+                            <li>A clear and concise name for the proposed SIG.</li>
+                            <li>A statement of the SIG's purpose, scope, and objectives, outlining the specific area of cloud technology focus.</li>
+                            <li>A list of at least five (5) Individual Members who are initially interested in participating in the SIG and who support the proposal.</li>
+                            <li>Identification of at least one and preferably two or more members willing to serve as initial SIG Coordinator(s).</li>
+                            <li>A preliminary outline of planned activities or areas of focus for the SIG.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Executive Committee Review and Approval:</strong> The Executive Committee shall review all SIG proposals and approve or reject them based on criteria including alignment with Association objectives, member interest, clear scope, potential contribution, volunteer leadership availability, and avoidance of unnecessary duplication.</li>
+                    <li><strong>Notification and Charter:</strong> The Executive Committee shall notify the proposers in writing of the decision. Upon approval, the Executive Committee shall formally recognize the SIG and may work with the initial SIG Coordinator(s) to develop a brief charter document.</li>
+                </ol>
+
+                <h4>Article 24: Structure, Leadership, and Operations of SIGs</h4>
+                <ol>
+                    <li><strong>SIG Coordinator(s):</strong> Each SIG shall be led by one or more volunteer SIG Coordinator(s), who shall be Individual Members in good standing.</li>
+                    <li><strong>Responsibilities of SIG Coordinators:</strong> Coordinators shall organize SIG activities, communicate with SIG members, ensure alignment with Association policies, act as liaison with the Executive Committee, and submit periodic reports.</li>
+                    <li><strong>Selection of SIG Coordinators:</strong> Initial coordinators are identified in the proposal. Subsequent coordinators may be self-nominated and confirmed by SIG consensus, elected by SIG members, or appointed with Executive Committee guidance.</li>
+                    <li><strong>Term of SIG Coordinators:</strong> The term of office shall be two years, renewable.</li>
+                    <li><strong>Permitted Activities:</strong> SIGs may organize meetings, workshops, online forums, guest speaker events, collaborative projects, study groups, and networking events.</li>
+                    <li><strong>Resource Support:</strong> The Executive Committee shall endeavor to provide reasonable support (e.g., communication channels, meeting platforms, limited financial support subject to budget and approval) to SIGs.</li>
+                    <li><strong>Guidelines for SIG Operations:</strong> SIGs must operate consistently with this Constitution and the Code of Conduct, be open to all interested HKCDA members, operate on a non-profit basis, be inclusive, and avoid representing themselves as speaking for the entire Association without explicit Executive Committee authorization.</li>
+                    <li><strong>Reporting:</strong> SIG Coordinators shall submit brief periodic reports (e.g., quarterly or semi-annually) to the Executive Committee.</li>
+                </ol>
+
+                <h4>Article 25: Inactivation or Disbandment of SIGs</h4>
+                <ol>
+                    <li><strong>Inactivation due to Inactivity:</strong> If a SIG is inactive for one year, the Executive Committee may, after attempts to engage, declare it inactive.</li>
+                    <li><strong>Disbandment by Executive Committee:</strong> The Executive Committee may disband a SIG if it no longer aligns with Association objectives, violates policies, fails to operate effectively, or upon recommendation from SIG Coordinators.</li>
+                    <li><strong>Procedure:</strong> Prior to inactivation/disbandment, the Executive Committee shall communicate with SIG Coordinator(s), provide written notice with an opportunity to respond within fourteen (14) days, consider any response, and then make a final decision by majority vote.</li>
+                    <li><strong>Reactivation:</strong> Members may propose reactivation of an inactive SIG by following the new SIG formation process (Article 23.2).</li>
+                </ol>
+            </section>
+
+            <!-- Chapter 6 -->
+            <section id="finance">
+                <h3>Chapter 6: Financial Matters</h3>
+
+                <h4>Article 26: Financial Resources</h4>
+                <p class="text-white/70 mb-4">The financial resources of the Association shall include:</p>
+                <ol>
+                    <li>Membership fees from Individual, Corporate, and Student Members.</li>
+                    <li>Sponsorships, grants, and donations from organizations and individuals, where such support is given in furtherance of the Association's objectives.</li>
+                    <li>Revenue generated from events, workshops, and training programs, where such fees are charged on a cost-recovery basis to cover event-related expenses.</li>
+                </ol>
+
+                <h4>Article 27: Financial Management and Budgeting</h4>
+                <ol>
+                    <li>The Treasurer shall be responsible for the financial management of the Association, including:
+                        <ol>
+                            <li>Maintaining accurate financial records and accounts.</li>
+                            <li>Collecting membership fees and other income.</li>
+                            <li>Managing expenses and disbursements.</li>
+                            <li>Preparing annual financial statements and budgets.</li>
+                            <li>Ensuring compliance with relevant accounting standards and regulations.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Financial Year:</strong> The financial year of the Association shall be from the First (1st) of April of each year to the Thirty-First (31st) of March of the next year.</li>
+                    <li><strong>Annual Budget:</strong> The Treasurer, in consultation with the Executive Committee, shall prepare a draft annual budget. This draft shall be reviewed and approved by the Executive Committee and then presented to the Annual General Meeting for final approval by the members.</li>
+                    <li><strong>Budget Monitoring:</strong> The Executive Committee shall regularly monitor financial performance against the approved budget and may adjust it as necessary, subject to any limitations set by the General Meeting.</li>
+                    <li><strong>Expense Authorization:</strong> The Executive Committee shall establish guidelines and authorization limits for expenditures. Expenditures above a certain threshold (to be defined in financial procedures established by the Executive Committee) may require pre-approval by the Treasurer or multiple Executive Committee members.</li>
+                    <li><strong>Documentation:</strong> All expenses must be properly documented with receipts, invoices, or other appropriate supporting documentation.</li>
+                    <li><strong>Reimbursement:</strong> Procedures for reimbursement of expenses incurred on behalf of the Association shall be clearly defined and communicated by the Executive Committee.</li>
+                </ol>
+
+                <h4>Article 28: Audit Procedures</h4>
+                <ol>
+                    <li><strong>Annual Audit:</strong> The Association's financial accounts shall be audited annually by an independent auditor appointed by the Executive Committee and approved by the General Meeting.</li>
+                    <li><strong>Auditor's Report:</strong> The auditor shall prepare an audit report for presentation to the Executive Committee and the Annual General Meeting.</li>
+                    <li><strong>Review of Audit Report:</strong> The Executive Committee shall review the audit report and address any findings before presenting the audited financial statements to the AGM for approval.</li>
+                </ol>
+
+                <h4>Article 29: Handling of Fee Arrears and Financial Irregularities</h4>
+                <ol>
+                    <li><strong>Fee Arrears Management:</strong> The Treasurer shall monitor membership fee payments and follow up on arrears according to Article 8.5.</li>
+                    <li><strong>Financial Irregularities:</strong> Any suspected financial irregularities or mismanagement shall be promptly reported to the Executive Committee. The Executive Committee shall investigate the matter and take appropriate corrective action, which may include reporting to relevant authorities if necessary.</li>
+                </ol>
+
+                <h4>Article 30: Use of Funds</h4>
+                <ol>
+                    <li>The funds of the Association shall be used solely to further its objectives, including but not limited to:
+                        <ol>
+                            <li>Organizing events, workshops, and conferences, such as venue rental, speaker fees, catering, and promotional materials.</li>
+                            <li>Developing and delivering educational programs and resources, including the creation of online learning modules and the procurement of training materials.</li>
+                            <li>Reimbursement of reasonable and receipted out-of-pocket expenses incurred by instructors, speakers, or volunteers while carrying out activities on behalf of the Association.</li>
+                            <li>Supporting community initiatives and projects, which may include providing small grants for member-led cloud projects or sponsoring participation in relevant industry events.</li>
+                            <li>Covering administrative and operational expenses of the Association, such as website hosting, communication tools, accounting services, legal fees, and office supplies.</li>
+                            <li>Any surplus funds generated by the Association shall be reinvested into the Association to further its objectives and shall not be distributed as profit to any members or office bearers.</li>
+                        </ol>
+                    </li>
+                </ol>
+            </section>
+
+            <!-- Chapter 7 -->
+            <section id="code">
+                <h3>Chapter 7: Code of Conduct and Ethics</h3>
+
+                <h4>Article 31: Member Code of Conduct</h4>
+                <ol>
+                    <li><strong>Professionalism and Respect:</strong> Members shall conduct themselves in a professional, ethical, and respectful manner in all Association activities and interactions.</li>
+                    <li><strong>Integrity and Honesty:</strong> Members shall act with integrity and honesty and avoid conflicts of interest.</li>
+                    <li><strong>Non-Discrimination and Inclusivity:</strong> The Association is committed to non-discrimination and inclusivity. Members shall treat all individuals with fairness and respect, regardless of their background, identity, or affiliation.</li>
+                    <li><strong>Compliance with Laws:</strong> Members shall comply with all applicable laws and regulations in Hong Kong and uphold the reputation of the Association.</li>
+                    <li><strong>Reporting Misconduct:</strong> Members who witness or become aware of any conduct that violates this Code of Conduct or is detrimental to the Association are encouraged to report it to the Executive Committee in a confidential manner.</li>
+                </ol>
+
+                <h4>Article 32: Enforcement of Code of Conduct</h4>
+                <ol>
+                    <li><strong>Executive Committee Responsibility:</strong> The Executive Committee shall be responsible for enforcing the Code of Conduct and addressing any reported violations.</li>
+                    <li><strong>Disciplinary Actions:</strong> Violations of the Code of Conduct may result in disciplinary actions, which may include:
+                        <ol>
+                            <li>Verbal or written warning.</li>
+                            <li>Suspension of membership rights or benefits for a specified period.</li>
+                            <li>Termination of membership (as per the procedure in Article 11.1.3).</li>
+                            <li>Other appropriate actions as determined by the Executive Committee, depending on the severity and nature of the violation.</li>
+                        </ol>
+                    </li>
+                    <li><strong>Due Process:</strong> Members subject to disciplinary action shall be provided with due process, including written notification of the alleged violation, an opportunity to respond, and a fair hearing before the Executive Committee or a designated disciplinary committee (if established). Appeal rights to the General Meeting for termination remain as per Article 11.1.c.</li>
+                </ol>
+            </section>
+
+            <!-- Chapter 8 -->
+            <section id="amendments">
+                <h3>Chapter 8: Amendments to the Constitution</h3>
+                
+                <h4>Article 33: Amendment Procedure</h4>
+                <ol>
+                    <li>Amendments to this Constitution may be proposed by:
+                        <ol>
+                            <li>A resolution of the Executive Committee.</li>
+                            <li>A written proposal signed by at least 1% of voting members.</li>
+                        </ol>
+                    </li>
+                    <li>Proposed amendments shall be circulated to all voting members at least 14 days prior to a General Meeting (AGM or EGM) where they will be discussed and voted upon.</li>
+                    <li>Amendments to this Constitution shall require a two-thirds majority vote of voting members present at a General Meeting to be approved.</li>
+                    <li>Approved amendments shall come into effect immediately upon being passed at the General Meeting unless otherwise specified in the amendment.</li>
+                    <li>Amendments to this Constitution shall be communicated to all members within 30 days of their approval, typically via the website.</li>
+                </ol>
+            </section>
+
+            <!-- Chapter 9 -->
+            <section id="dissolution">
+                <h3>Chapter 9: Dissolution</h3>
+                
+                <h4>Article 34: Dissolution Procedure</h4>
+                <ol>
+                    <li>The Association may be dissolved by a resolution passed at a General Meeting specifically convened for that purpose, with a two-thirds majority vote of voting members present.</li>
+                    <li>Upon dissolution, the Executive Committee shall take all reasonable steps to settle the debts and liabilities of the Association using the Association's assets. Any assets remaining thereafter shall be donated to a registered charitable organization or organizations in Hong Kong with similar objectives, as decided by the General Meeting.</li>
+                </ol>
+            </section>
+
+            <!-- Chapter 10 -->
+            <section id="provisions">
+                <h3>Chapter 10: General Provisions</h3>
+                
+                <h4>Article 35: Official Language</h4>
+                <ol>
+                    <li>The official language of the Association shall be English.</li>
+                    <li>Chinese (Cantonese and Mandarin) may be used for communication and activities as appropriate.</li>
+                </ol>
+
+                <h4>Article 36: Interpretation of the Constitution</h4>
+                <ol>
+                    <li>The Executive Committee shall be responsible for the interpretation of this Constitution.</li>
+                    <li>In case of disputes or ambiguities regarding the interpretation of this Constitution, the decision of the Executive Committee shall be binding, provided it is consistent with the overall intent of this Constitution. If a dispute cannot be resolved or a member challenges the Executive Committee's interpretation, the matter may be referred to a General Meeting, whose decision shall be final.</li>
+                </ol>
+
+                <h4>Article 37: Procedures and Guidelines</h4>
+                <ol>
+                    <li>The Executive Committee may develop and implement detailed operational procedures, guidelines, and manuals to further clarify and implement this Constitution, as needed for the efficient operation of the Association.</li>
+                    <li>These procedures and guidelines shall be consistent with this Constitution and shall be made available to members.</li>
+                </ol>
+
+                <h4>Article 38: Governing Law</h4>
+                <ol>
+                    <li>This Constitution and the operation of the Hong Kong Cloud Developers Association shall be governed by and construed in accordance with the laws of the Hong Kong Special Administrative Region.</li>
+                </ol>
+
+                <h4>Article 39: Commencement</h4>
+                <ol>
+                    <li>This Constitution shall come into effect upon its adoption by the founding members of the Hong Kong Cloud Developers Association.</li>
+                </ol>
+
+                <h4>Article 40: Registered Address</h4>
+                <ol>
+                    <li>The registered address of the Hong Kong Cloud Developers Association shall be: <strong>Room 903, 9/F., Song Ling Industrial Building, 40 Ta Chuen Ping Street, Kwai Chung, Hong Kong.</strong></li>
+                    <li>Any change to the registered address shall be approved by the Executive Committee and notified to the relevant authorities and members as required.</li>
+                </ol>
+            </section>
+
+        </article>
+    </main>
+
+    <footer class="py-12 border-t border-white/5 text-center text-white/30 text-xs font-mono bg-black">
+        <p>&copy; 2026 Hong Kong Cloud Developers Association. All rights reserved.</p>
+        <p class="mt-2">Room 903, 9/F., Song Ling Industrial Building, 40 Ta Chuen Ping Street, Kwai Chung, Hong Kong</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership | HKCDA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,300;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'], serif: ['Newsreader', 'serif'] },
+                    colors: { brand: { sky: '#38BDF8' } }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #030303; color: white; }
+        .tier-card { display: flex; flex-direction: column; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 2rem; position: relative; overflow: hidden; }
+        .tier-card:hover { border-color: #38BDF8; background: rgba(255,255,255,0.04); }
+        .popular-tag { position: absolute; top: 1rem; right: 1rem; background: #38BDF8; color: black; font-size: 0.65rem; padding: 2px 8px; border-radius: 99px; font-weight: bold; text-transform: uppercase; }
+        .btn-glow { box-shadow: 0 0 20px rgba(56, 189, 248, 0.2); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- 1. Unicorn Studio Background (Subtle) -->
+    <div class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-20 mix-blend-screen">
+        <div data-us-project="2Vn6Fs00nznm2BK3SWDp" style="width:100%; height: 100%"></div>
+        <script type="text/javascript">
+            !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.2/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+        </script>
+    </div>
+
+    <nav class="fixed left-1/2 -translate-x-1/2 top-6 w-[90%] max-w-5xl z-50">
+        <div class="flex items-center justify-between p-2 pl-6 pr-2 rounded-full border border-white/10 bg-black/50 backdrop-blur-xl">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-brand-sky/10 flex items-center justify-center border border-brand-sky/30">
+                    <span class="iconify text-brand-sky" data-icon="solar:cloud-bold-duotone"></span>
+                </div>
+                <span class="font-serif font-bold italic text-lg">HKCDA</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="about.html" class="text-sm font-medium text-white/60 hover:text-white transition-colors">About</a>
+                <a href="events.html" class="text-sm font-medium text-white/60 hover:text-white transition-colors">Events</a>
+                <a href="membership.html" class="text-sm font-medium text-white transition-colors">Membership</a>
+                <a href="constitution.html" class="text-sm font-medium text-white/60 hover:text-white transition-colors">Constitution</a>
+            </div>
+            <a href="https://forms.gle/5dKWwubvhCZtJd7Z6" class="px-5 py-2.5 rounded-full bg-white text-black text-xs font-bold hover:bg-brand-sky transition-colors">Register</a>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-32 pb-20 px-6 max-w-6xl mx-auto w-full">
+        
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-serif mb-4">Join the <span class="text-brand-sky italic">Ecosystem</span></h1>
+            <p class="text-white/50 max-w-xl mx-auto">Connect with professionals, gain access to exclusive events, and shape the future of cloud in HK.</p>
+        </div>
+
+        <!-- Pricing Tiers -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
+            
+            <!-- Student -->
+            <div class="tier-card">
+                <h3 class="text-lg font-medium mb-2">Student</h3>
+                <div class="text-3xl font-serif font-bold mb-4">Free</div>
+                <p class="text-white/40 text-sm mb-8">For students currently enrolled in recognized institutions.</p>
+                <ul class="text-sm space-y-3 mb-8 flex-grow">
+                    <li class="flex gap-2"><span class="text-brand-sky">✓</span> 1 Voting Right</li>
+                    <li class="flex gap-2"><span class="text-brand-sky">✓</span> Event Access</li>
+                    <li class="flex gap-2"><span class="text-brand-sky">✓</span> Career Development</li>
+                </ul>
+            </div>
+
+            <!-- Individual -->
+            <div class="tier-card border-brand-sky/30 bg-white/[0.03]">
+                <div class="popular-tag">Most Popular</div>
+                <h3 class="text-lg font-medium mb-2 text-brand-sky">Individual</h3>
+                <div class="text-3xl font-serif font-bold mb-4">HKD 10<span class="text-sm font-sans font-normal text-white/40">/yr</span></div>
+                <p class="text-white/40 text-sm mb-8">For developers, engineers, and cloud enthusiasts.</p>
+                <ul class="text-sm space-y-3 mb-8 flex-grow">
+                    <li class="flex gap-2"><span class="text-brand-sky">✓</span> 1 Voting Right</li>
+                    <li class="flex gap-2"><span class="text-brand-sky">✓</span> Run for Executive Committee</li>
+                    <li class="flex gap-2"><span class="text-brand-sky">✓</span> Full Event Access</li>
+                    <li class="flex gap-2"><span class="text-brand-sky">✓</span> Member Resources</li>
+                </ul>
+            </div>
+
+            <!-- Corporate -->
+            <div class="tier-card">
+                <h3 class="text-lg font-medium mb-2">Corporate</h3>
+                <div class="text-3xl font-serif font-bold mb-4">HKD 100<span class="text-sm font-sans font-normal text-white/40">/yr</span></div>
+                <p class="text-white/40 text-sm mb-8">For companies providing or using cloud services.</p>
+                <ul class="text-sm space-y-3 mb-8 flex-grow">
+                    <li class="flex gap-2"><span class="text-brand-sky">✓</span> 1 Voting Right (Rep)</li>
+                    <li class="flex gap-2"><span class="text-brand-sky">✓</span> Brand Visibility</li>
+                    <li class="flex gap-2"><span class="text-brand-sky">✓</span> Partnership Opportunities</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Google Form CTA -->
+        <div class="text-center mb-24">
+            <a href="https://forms.gle/5dKWwubvhCZtJd7Z6" class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-brand-sky text-black font-bold uppercase tracking-wide btn-glow hover:scale-105 transition-transform">
+                Apply for Membership
+                <span class="iconify" data-icon="solar:arrow-right-bold" data-width="16"></span>
+            </a>
+            <p class="mt-4 text-xs text-white/30">Opens Google Form</p>
+        </div>
+
+        <!-- Volunteer Section -->
+        <div class="rounded-[32px] bg-white/5 border border-white/10 p-10 md:p-16 text-center">
+            <h2 class="text-3xl font-serif mb-6">Call for Volunteers</h2>
+            <p class="text-white/60 max-w-2xl mx-auto mb-10">
+                Gain leadership experience, enhance your public speaking, and expand your network. We are looking for community members to help with event planning, venue setup, and speaker coordination.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <span class="px-4 py-2 rounded-full border border-white/20 bg-black/20 text-sm">Event Planner</span>
+                <span class="px-4 py-2 rounded-full border border-white/20 bg-black/20 text-sm">Venue Helper</span>
+                <span class="px-4 py-2 rounded-full border border-white/20 bg-black/20 text-sm">Speaker Scout</span>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="py-12 border-t border-white/5 text-center text-white/30 text-xs font-mono bg-black">
+        <p>&copy; 2026 Hong Kong Cloud Developers Association.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hong Kong Cloud Developers Association | HKCDA</title>
+    <meta name="description" content="An Independent, Non-Profit Organization Fostering Cloud Innovation in Hong Kong.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,300;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Iconify -->
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Newsreader', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            sky: '#38BDF8', // Cloud Blue
+                            dark: '#050505',
+                            panel: '#0F110E',
+                            accent: '#2563EB'
+                        }
+                    },
+                    animation: {
+                        'beam': 'beam 3s linear infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                        'spin-slow-reverse': 'spin 15s linear infinite reverse',
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'marquee': 'marquee 60s linear infinite',
+                        'enter': 'enter 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) both',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        beam: {
+                            '0%': { strokeDashoffset: '1000' },
+                            '100%': { strokeDashoffset: '0' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        enter: {
+                            '0%': { opacity: '0', transform: 'translateY(20px) scale(0.95)', filter: 'blur(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0) scale(1)', filter: 'blur(0px)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030303;
+            color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .text-glow {
+            text-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+        }
+
+        /* Unicorn Studio Canvas Fix */
+        canvas {
+            display: block;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Beam Lines */
+        .beam-line {
+            stroke-dasharray: 80 1000;
+            stroke-linecap: round;
+        }
+
+        /* Sonar Animation */
+        @keyframes sonar-wave {
+            0% { r: 20px; opacity: 0.8; stroke-width: 1px; }
+            100% { r: 120px; opacity: 0; stroke-width: 0px; }
+        }
+        .animate-sonar {
+            animation: sonar-wave 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        /* Delays */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-1000 { animation-delay: 1s; }
+        .delay-2000 { animation-delay: 2s; }
+
+        /* Uiverse Button: Serious Stingray 77 (Adapted) */
+        .btn-uiverse {
+            padding: 0.8em 1.8em;
+            border: 2px solid #38BDF8;
+            position: relative;
+            overflow: hidden;
+            background-color: transparent;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            transition: .3s;
+            z-index: 1;
+            font-family: inherit;
+            color: #38BDF8;
+            border-radius: 9999px;
+            cursor: pointer;
+        }
+
+        .btn-uiverse::before {
+            content: '';
+            width: 0;
+            height: 300%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            background: #38BDF8;
+            transition: .5s ease;
+            display: block;
+            z-index: -1;
+        }
+
+        .btn-uiverse:hover::before {
+            width: 105%;
+        }
+
+        .btn-uiverse:hover {
+            color: #111;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+        }
+
+        /* Secondary Glass Button */
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+
+        /* Marquee Mask */
+        .mask-gradient-fade {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #38BDF8, #818cf8, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative selection:bg-brand-sky selection:text-black">
+
+    <!-- 1. Unicorn Studio Background -->
+    <div class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none opacity-60 mix-blend-screen">
+        <div data-us-project="2Vn6Fs00nznm2BK3SWDp" style="width:100%; height: 100%"></div>
+        <script type="text/javascript">
+            !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.2/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+        </script>
+    </div>
+
+    <!-- 2. Navigation -->
+    <nav class="fixed left-1/2 -translate-x-1/2 top-6 w-[90%] max-w-5xl z-50 animate-enter">
+        <div class="flex items-center justify-between p-2 pl-6 pr-2 rounded-full border border-white/10 bg-black/20 backdrop-blur-xl shadow-lg shadow-brand-sky/5">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-brand-sky/20 to-transparent flex items-center justify-center border border-brand-sky/30">
+                    <span class="iconify text-brand-sky" data-icon="solar:cloud-bold-duotone" data-width="20"></span>
+                </div>
+                <span class="font-serif font-bold italic text-lg tracking-tight">HKCDA</span>
+            </div>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="about.html" class="text-sm font-medium text-white/60 hover:text-white transition-colors">About</a>
+                <a href="events.html" class="text-sm font-medium text-white/60 hover:text-white transition-colors">Events</a>
+                <a href="membership.html" class="text-sm font-medium text-white/60 hover:text-white transition-colors">Membership</a>
+                <a href="constitution.html" class="text-sm font-medium text-white/60 hover:text-white transition-colors">Constitution</a>
+            </div>
+
+            <!-- CTA -->
+            <button class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black text-xs font-bold hover:bg-brand-sky transition-colors">
+                Register
+                <span class="iconify" data-icon="solar:arrow-right-bold" data-width="14"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 3. Hero Section -->
+    <main class="container mx-auto px-6 lg:px-12 min-h-screen flex flex-col lg:flex-row items-center justify-center pt-24 lg:pt-0 relative z-10">
+        
+        <!-- Left: Content -->
+        <div class="w-full lg:w-1/2 flex flex-col justify-center gap-6 lg:pr-12">
+            
+            <!-- Status Badge -->
+            <div class="flex items-center gap-2 w-fit px-3 py-1 rounded-full border border-brand-sky/20 bg-brand-sky/5 animate-enter delay-100">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-sky opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-sky"></span>
+                </span>
+                <span class="text-[10px] font-mono uppercase tracking-widest text-brand-sky">Fostering Cloud Innovation</span>
+            </div>
+
+            <!-- Headlines -->
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-serif font-medium leading-[1.1] animate-enter delay-200">
+                Hong Kong <br>
+                <span class="text-gradient italic pr-2">Cloud Developers</span> <br>
+                Association
+            </h1>
+
+            <div class="animate-enter delay-300">
+                <h2 class="text-xl text-white/90 font-light">香港雲端開發者協會 (香港雲協)</h2>
+                <p class="mt-4 text-lg text-white/50 leading-relaxed font-light max-w-lg">
+                    An independent, non-profit organization dedicated to advancing cloud computing technologies and bridging providers, users, and the tech ecosystem in Asia-Pacific.
+                </p>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 mt-4 animate-enter delay-400">
+                <a href="https://forms.gle/5dKWwubvhCZtJd7Z6" target="_blank" rel="noopener noreferrer" class="btn-uiverse">
+                    Become a Member
+                </a>
+                
+                <!--<button class="btn-glass px-8 py-3 rounded-full flex items-center gap-2 text-sm font-medium">
+                    <span class="iconify" data-icon="solar:calendar-bold-duotone"></span>
+                    Next Event: Jun 26
+                </button>-->
+            </div>
+
+            <!-- Quick Stats (Constitution/Social inspired) -->
+            <div class="flex gap-8 mt-8 pt-8 border-t border-white/5 animate-enter delay-500">
+                <div>
+                    <span class="block text-2xl font-serif text-white">4</span>
+                    <span class="text-xs text-white/40 uppercase tracking-wider font-mono">Exec. Committee</span>
+                </div>
+                <div>
+                    <span class="block text-2xl font-serif text-white">HKD 10</span>
+                    <span class="text-xs text-white/40 uppercase tracking-wider font-mono">Annual Fee</span>
+                </div>
+                <div>
+                    <span class="block text-2xl font-serif text-white">Non-Profit</span>
+                    <span class="text-xs text-white/40 uppercase tracking-wider font-mono">Independent</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Beams & Visuals -->
+        <div class="w-full lg:w-1/2 h-[500px] lg:h-[800px] relative flex items-center justify-center animate-enter delay-500">
+            
+            <!-- SVG Noodles/Beams Animation -->
+            <svg class="absolute inset-0 w-full h-full overflow-visible pointer-events-none" viewBox="0 0 600 600">
+                <defs>
+                    <linearGradient id="beam-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:transparent" />
+                        <stop offset="50%" style="stop-color:#38BDF8" />
+                        <stop offset="100%" style="stop-color:transparent" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Beam 1: Top Left to Center -->
+                <path d="M 0 100 Q 150 100 300 300" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"></path>
+                <path d="M 0 100 Q 150 100 300 300" fill="none" stroke="url(#beam-grad)" stroke-width="2" class="beam-line animate-beam opacity-80"></path>
+
+                <!-- Beam 2: Bottom Left to Center -->
+                <path d="M 0 500 Q 150 500 300 300" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"></path>
+                <path d="M 0 500 Q 150 500 300 300" fill="none" stroke="url(#beam-grad)" stroke-width="2" class="beam-line animate-beam opacity-80" style="animation-delay: -1s;"></path>
+
+                <!-- Beam 3: Top Right to Center -->
+                <path d="M 600 150 Q 450 150 300 300" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"></path>
+                <path d="M 600 150 Q 450 150 300 300" fill="none" stroke="url(#beam-grad)" stroke-width="2" class="beam-line animate-beam opacity-80" style="animation-delay: -2s;"></path>
+
+                <!-- Central Hub Complex -->
+                <g transform="translate(300, 300)">
+                    <!-- Ambient Glow -->
+                    <circle r="80" fill="rgba(56, 189, 248, 0.05)" filter="blur(20px)"></circle>
+                    
+                    <!-- Sonar Waves -->
+                    <circle r="20" fill="none" stroke="#38BDF8" stroke-width="1" class="animate-sonar"></circle>
+                    <circle r="20" fill="none" stroke="#38BDF8" stroke-width="1" class="animate-sonar delay-1000"></circle>
+
+                    <!-- Rotating Technical Rings -->
+                    <circle r="60" fill="none" stroke="rgba(255,255,255,0.1)" stroke-dasharray="4 4" class="animate-spin-slow"></circle>
+                    <circle r="45" fill="none" stroke="rgba(56,189,248,0.2)" stroke-dasharray="10 20" class="animate-spin-slow-reverse"></circle>
+
+                    <!-- Core Icon Container -->
+                    <circle r="30" fill="#030303" stroke="#38BDF8" stroke-width="2"></circle>
+                    <!-- Core Logo -->
+                    <image href="https://api.iconify.design/solar:server-square-cloud-bold-duotone.svg?color=%2338bdf8" x="-15" y="-15" width="30" height="30" />
+                </g>
+            </svg>
+
+            <!-- Floating Tech Icons (Orbiting) -->
+            <div class="absolute inset-0 w-full h-full pointer-events-none animate-spin-slow" style="animation-duration: 40s;">
+                <!-- Google Cloud -->
+                <div class="absolute top-[20%] left-[20%] p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl animate-spin-slow-reverse" style="animation-duration: 40s;">
+                    <span class="iconify text-white/80" data-icon="simple-icons:googlecloud" data-width="32"></span>
+                </div>
+                <!-- AWS -->
+                <div class="absolute bottom-[20%] right-[20%] p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl animate-spin-slow-reverse" style="animation-duration: 40s;">
+                    <span class="iconify text-white/80" data-icon="simple-icons:amazonaws" data-width="32"></span>
+                </div>
+                <!-- Azure -->
+                <div class="absolute top-[20%] right-[20%] p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl animate-spin-slow-reverse" style="animation-duration: 40s;">
+                    <span class="iconify text-white/80" data-icon="simple-icons:azure" data-width="32"></span>
+                </div>
+                 <!-- Kubernetes -->
+                 <div class="absolute bottom-[20%] left-[20%] p-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl animate-spin-slow-reverse" style="animation-duration: 40s;">
+                    <span class="iconify text-white/80" data-icon="simple-icons:kubernetes" data-width="32"></span>
+                </div>
+            </div>
+
+            <!-- Labels -->
+            <div class="absolute top-[35%] right-[10%] hidden md:block animate-enter delay-1000">
+                <div class="flex flex-col items-start">
+                    <span class="text-[10px] font-mono text-brand-sky tracking-widest mb-1">DATA FLOW</span>
+                    <div class="h-px w-12 bg-gradient-to-r from-brand-sky to-transparent"></div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- 4. Infinite Marquee Section (Alpha Masked) -->
+    <section class="w-full border-t border-white/5 bg-black/30 backdrop-blur-sm relative z-20">
+        <div class="max-w-7xl mx-auto py-8 overflow-hidden relative mask-gradient-fade">
+            <div class="flex animate-marquee w-max gap-16 items-center">
+                <!-- Using simple-icons to ensure they are monochrome/white visible on dark background -->
+                <!-- Set 1 -->
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:googlecloud" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:amazonaws" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:azure" data-width="40"></span>
+                
+                <!-- Alibaba Cloud -->
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:alibabacloud" data-width="40"></span>
+                <!-- Huawei -->
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:huawei" data-width="40"></span>
+                <!-- Baidu -->
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:baidu" data-width="40"></span>
+                <!-- MongoDB (Monochrome leaf, matches new brand shape) -->
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:mongodb" data-width="40"></span>
+                <!-- NVIDIA -->
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:nvidia" data-width="40"></span>
+
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:kubernetes" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:docker" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:terraform" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:python" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:go" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:linux" data-width="40"></span>
+                
+                <!-- Duplicate Set for Loop -->
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:googlecloud" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:amazonaws" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:azure" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:alibabacloud" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:huawei" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:baidu" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:mongodb" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:nvidia" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:kubernetes" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:docker" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:terraform" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:python" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:go" data-width="40"></span>
+                <span class="iconify text-white/40 hover:text-white transition-colors" data-icon="simple-icons:linux" data-width="40"></span>
+            </div>
+        </div>
+        
+        <!-- Trusted Label -->
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#030303] px-4 py-1 rounded-full border border-white/10">
+            <span class="text-[10px] font-mono text-white/40 tracking-widest uppercase">Technologies we use</span>
+        </div>
+    </section>
+
+    <!-- 5. Mission / Benefits Section (Adapted) -->
+    <section class="py-24 px-6 lg:px-12 relative z-10 bg-black/40 border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 animate-enter delay-100">
+                <span class="text-xs font-mono text-brand-sky uppercase tracking-[0.2em] mb-4 block">Our Objectives</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-white mb-4">Foster a Vibrant Community</h2>
+                <p class="text-white/50 max-w-2xl mx-auto font-light">
+                    We bridge cloud providers, users, and the wider tech ecosystem to establish Hong Kong as a leading hub for cloud innovation.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="group p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-brand-sky/50 transition-all duration-500 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-brand-sky/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <span class="iconify text-brand-sky" data-icon="solar:users-group-rounded-bold-duotone" data-width="24"></span>
+                        </div>
+                        <h3 class="text-xl font-medium text-white mb-3">Community Growth</h3>
+                        <p class="text-white/50 text-sm leading-relaxed">
+                            Building a strong network of cloud developers, individuals, and companies through meetups and collaboration.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-brand-sky/50 transition-all duration-500 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-brand-sky/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <span class="iconify text-brand-sky" data-icon="solar:diploma-verified-bold-duotone" data-width="24"></span>
+                        </div>
+                        <h3 class="text-xl font-medium text-white mb-3">Education & Training</h3>
+                        <p class="text-white/50 text-sm leading-relaxed">
+                            Offering platforms for professional development, workshops, and seminars in cloud and related technologies.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-brand-sky/50 transition-all duration-500 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-brand-sky/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="relative z-10">
+                        <div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                            <span class="iconify text-brand-sky" data-icon="solar:chart-square-bold-duotone" data-width="24"></span>
+                        </div>
+                        <h3 class="text-xl font-medium text-white mb-3">Advocacy & Policy</h3>
+                        <p class="text-white/50 text-sm leading-relaxed">
+                            Representing the interests of HK cloud developers and advocating for policies that support industry growth.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Simple -->
+    <footer class="py-12 border-t border-white/5 text-center text-white/30 text-xs font-mono relative z-10 bg-black">
+        <p>&copy; 2026 Hong Kong Cloud Developers Association. All rights reserved.</p>
+        <p class="mt-2">Room 903, 9/F., Song Ling Industrial Building, 40 Ta Chuen Ping Street, Kwai Chung, Hong Kong</p>
+    </footer>
+
+    <!-- Mouse Spotlight Logic (Optional Polish) -->
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.group');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body>
+</html>
